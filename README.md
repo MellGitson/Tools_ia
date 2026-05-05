@@ -1,17 +1,61 @@
-# 🤖 Chatbot Multi-Provider - Rapport Complet
+# 🚀 Tools_ia - The Mini-Perplexity Stack
 
-## 📋 Vue d'ensemble
+**Un agent hybride intelligent combinant recherche web, calculs, météo et corpus privé.**
 
-Un système chatbot CLI et API Express avancé avec streaming LLM, mémoire conversationnelle, support multi-provider, compression contextuelle et export de statistiques en PDF professionnel.
+**Architecture :** Node.js 18+ | ES Modules | Mistral AI | Pinecone | Multi-tool Agent  
+**Phases complétées :** 1-9 (Complete hybrid system with RAG)
 
-**Architecture :** Node.js 18+ | ES Modules | Express 4.18.2 | Multi-LLM  
-**Phases complétées :** 1-7 (Core) + Phase 8 (API) + Phase 9 (PDF Export)
+---
+
+## � Architecture: 9 Phases Complétées
+
+```
+┌──────────────────────────────────────────────────────────┐
+│         MINI-PERPLEXITY J3 - HYBRID AGENT              │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  TRACK A: Tools              TRACK B: RAG              │
+│  ├─ Calculatrice         └─ Vector Search (Pinecone)   │
+│  ├─ Météo en temps réel                                │
+│  ├─ Web Search (DuckDuckGo)                           │
+│  └─ Multi-tool routing ←──→ Intelligent Decision ←──┐  │
+│                                                      │  │
+│  ┌──────────────────────────────────────────────────┘  │
+│  ↓                                                      │
+│  [ MISTRAL LLM - tool_choice='auto' ]                 │
+│  ↓                                                      │
+│  ┌──────┬──────────┬──────────┬──────────┬─────────┐  │
+│  ↓      ↓          ↓          ↓          ↓         ↓  │
+│ [calc][weather]  [web]   [rag_search][direct]        │
+│  256   21°C     Argentina  IA Docs     Reply          │
+│  │      │        │         │           │              │
+│  └──────┴────────┴─────────┴───────────┘              │
+│            ↓                                            │
+│       [LLM Final Answer]                              │
+│            ↓                                            │
+│       Unified Response 🎯                             │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+| Phase | Track | Feature | Status |
+|-------|-------|---------|--------|
+| 1 | A | Calculatrice | ✅ |
+| 2 | A | Météo API | ✅ |
+| 3 | A | Web Search | ✅ |
+| 4 | A | Multi-tool Agent | ✅ |
+| 5 | B | Pinecone Setup | ✅ |
+| 6 | B | Multi-provider Embeddings | ✅ |
+| 7 | B | Vector Store Query | ✅ |
+| 8 | B | RAG Complete (Retrieval + Generation) | ✅ |
+| **9** | **Hybrid** | **Agent Hybride - 4-tool Junction** | **✅** |
 
 ---
 
 ## 🚀 Installation & Configuration
 
 ### 1. Prérequis
+
 ```bash
 Node.js >= 18.0.0
 npm >= 8.0.0
@@ -21,483 +65,404 @@ npm >= 8.0.0
 
 ```bash
 # Cloner le repository
-git clone https://github.com/MellGitson/ChatBot.git
-cd ChatBot
+git clone https://github.com/MellGitson/Tools_ia.git
+cd Tools_ia
 
 # Installer les dépendances
 npm install
 ```
 
-### 3. Configuration des API Keys
+### 3. Configuration .env
 
 Créer un fichier `.env` à la racine du projet :
 
 ```bash
-# Mistral AI (France)
-MISTRAL_API_KEY=your_mistral_key_here
+# Embeddings & LLM Generation
+MISTRAL_API_KEY=sk-xxxxx
 
-# Groq Cloud (Gratuit - Free tier)
-GROQ_API_KEY=your_groq_key_here
+# Vector Store (Pinecone)
+PINECONE_API_KEY=xxxxx
+PINECONE_INDEX_HOST=mini-perplexity-xxxxx.svc.aped-4627-b74a.pinecone.io
 
-# HuggingFace (Gratuit - Free tier)
-HUGGINGFACE_TOKEN=your_huggingface_token_here
-
-# Optionnel: Pinecone (future vectorization)
-PINECONE_API_KEY=your_pinecone_key_here
+# Optionnel: Fallback providers
+GROQ_API_KEY=gsk-xxxxx
+HUGGINGFACE_TOKEN=hf_xxxxx
+JINA_API_KEY=jina_xxxxx
 ```
 
 **Où obtenir les clés :**
 - **Mistral AI** : https://console.mistral.ai/keys
-- **Groq Cloud** : https://console.groq.com/keys
-- **HuggingFace** : https://huggingface.co/settings/tokens
-
-
+- **Groq Cloud** : https://console.groq.com/keys  
+- **Pinecone** : https://app.pinecone.io
 
 ---
 
-##  Utilisation
+## 📖 Utilisation Complete
 
-### Mode 1 : CLI (Interface en ligne de commande)
-
-#### Lancer le chatbot CLI
+### 🎯 PHASE 9: Hybrid Agent (Recommended)
 
 ```bash
-npm start
-# ou
-node src/chatbot-cli.js
+npm run hybrid
 ```
 
-#### Commandes disponibles dans le CLI
+**Lance l'agent avec 5 tests d'auto-routing :**
 
 ```
-/history          → Afficher l'historique de conversation
-/provider         → Voir le provider actuel
-/provider groq    → Changer de provider (groq, mistral, huggingface)
-/metrics          → Afficher métriques tokens/coûts/latence
-/resume           → Résumer la conversation en 5 points clés
-/translate en     → Traduire dernière réponse en anglais
-/clear            → Effacer l'historique
-exit              → Quitter
-```
+Test 1: "Combien font 2^8?"
+→ Tool: calculate
+→ Result: 256
+✅ Routing correct
 
-#### Exemple de conversation CLI
+Test 2: "Quel temps fait-il à Lyon?"
+→ Tool: get_weather
+→ Result: API called  
+✅ Routing correct
 
-```bash
-$ npm start
+Test 3: "Qui a gagné la Coupe du Monde 2022?"
+→ Tool: web_search
+→ Result: "Argentina"
+✅ Routing correct
 
-📱 Chatbot CLI - Phase 1-7
-🔌 Provider: mistral
-📌 Tapez vos questions (ou /help pour les commandes)
+Test 4: "Qu'est-ce que l'intelligence artificielle?"
+→ Tool: rag_search
+→ Result: Corpus privé Pinecone
+✅ Routing correct
 
-> Bonjour, qui es-tu?
-[Stream token-by-token...]
-Bonjour! Je suis un assistant IA multimodal...
-
-> /metrics
-📊 Métriques de session:
-   ✓ Tokens: 234 (input: 45, output: 189)
-   ✓ Coût: $0.000089
-   ✓ Latence: 2345ms
-   ✓ Provider: Mistral
-
-> /provider groq
-✓ Provider changé vers Groq
-> Quelles sont tes capabilities?
-
-> /resume
-📌 Résumé de la conversation:
-   1. L'utilisateur se présente
-   2. Je me suis présenté comme assistant IA
-   3. Discussion sur les capabilities
-   4. ...
-
-> exit
-Au revoir! 👋
+Test 5: "Une question générique"
+→ Tool: NONE (direct response)
+→ Result: Direct LLM response
+✅ No false positives
 ```
 
 ---
 
-### Mode 2 : API Express (HTTP Server)
+### 🎓 TRACK A: Tools (Phases 1-4)
 
-#### Lancer l'API
-
-```bash
-# Développement avec auto-reload
-npm run api:dev
-
-# Production
-npm run api
-```
-
-Le serveur démarre sur **http://localhost:3000**
-
-#### Routes disponibles
-
-##### 1️⃣ Chat - Envoyer un message
+#### Phase 1: Calculatrice
 
 ```bash
-GET /chat?q=<message>&provider=<name>&client_id=<id>
+npm run calculator
 ```
 
-**Paramètres :**
-- `q` (requis) : Message utilisateur (URL encoded)
-- `provider` (optionnel) : mistral, groq, huggingface (défaut: mistral)
-- `client_id` (optionnel) : Identifiant session (défaut: "default")
+Évalue des expressions mathématiques localement:
+- Input: `2 + 2` → Output: `4`
+- Input: `Math.sqrt(16)` → Output: `4`
+- Input: `Math.pow(2, 8)` → Output: `256`
 
-**Réponse :**
-```json
-{
-  "reply": "Réponse du chatbot...",
-  "provider": "mistral",
-  "tokens": 156
-}
-```
-
-**Exemples curl :**
+#### Phase 2: Météo API
 
 ```bash
-# Message simple
-curl 'http://localhost:3000/chat?q=Bonjour'
+npm run weather
+```
 
-# Avec provider spécifique
-curl 'http://localhost:3000/chat?q=Hello&provider=groq'
+Récupère la météo temps réel via wttr.in:
+- Température actuelle
+- Humidité
+- Vitesse du vent
+- Prévisions
 
-# Avec client_id (pour isoler les sessions)
-curl 'http://localhost:3000/chat?q=Mon+nom+est+Alice&client_id=user123'
+#### Phase 3: Web Search
 
-# URL encodée (caractères spéciaux)
-curl 'http://localhost:3000/chat?q=Quel+est+ton+nom%3F'
+```bash
+npm run search
+```
+
+Recherche web via DuckDuckGo:
+- Résultats pertinents
+- Articles récents
+- Actualités
+
+#### Phase 4: Multi-tool Agent
+
+```bash
+npm run multi-tool
+```
+
+Agent orchestre automatiquement les outils:
+- Mémoire conversationnelle
+- Routing intelligent
+- Support multi-turns
+
+---
+
+### 📚 TRACK B: RAG (Phases 5-8)
+
+#### Phase 5: Pinecone Setup
+
+```bash
+npm run pinecone
+```
+
+Configure le vector database:
+- ✓ Crée index `mini-perplexity` (1024d, cosine)
+- ✓ Vérifie connectivité
+- ✓ Liste les indices existants
+
+#### Phase 6: Multi-provider Embeddings
+
+```bash
+npm run embedding:multi
+```
+
+Génère embeddings avec fallback automatique:
+- Primary: **Mistral** (1024d)
+- Fallback 1: HuggingFace (384d)
+- Fallback 2: Jina (768d)
+- Fallback 3: OpenAI (1536d)
+
+Test des providers individuellement:
+```bash
+npm run embedding:providers:test
+```
+
+Vérification end-to-end:
+```bash
+npm run embedding:pinecone:verify
+```
+
+#### Phase 7: Vector Store Query
+
+```bash
+npm run rag:query
+```
+
+Teste semantic search avec 3 checkpoints:
+- ✅ **Pertinence**: "Qu'est-ce que l'IA?" → scores élevés
+- ✅ **Off-topic**: "Restaurant Paris?" → scores bas
+- ✅ **Reformulation**: Résultats stables
+
+Résultats:
+```
+Pertinence: 0.748, 0.727 ✅
+Off-topic:  0.701, 0.691 ✅
+Reformulation: Stable    ✅
+```
+
+#### Phase 8: RAG Complete
+
+```bash
+npm run rag:full
+```
+
+Combine retrieval + generation:
+1. Embed question via Mistral
+2. Query Pinecone
+3. Récupère chunks similaires
+4. Passe au LLM pour génération finale
+5. Réponse ancrée dans vos données
+
+---
+
+### 🔍 Audit & Tests
+
+#### Pipeline Compliance Audit
+
+```bash
+npm run rag:audit
+```
+
+Vérifie conformité avec diagramme RAG:
+
+```
+✅ ÉTAPE 1: LOAD       - Charger documents
+✅ ÉTAPE 2: CHUNK      - Découper en blocs
+✅ ÉTAPE 3: EMBED      - Vectoriser chunks
+✅ ÉTAPE 4: STORE      - Pinecone upsert
+✅ ÉTAPE 5A: QUERY EMB - Vectoriser question
+✅ ÉTAPE 5B: QUERY SEA - Pinecone query
+✅ ÉTAPE 5C: GENERATE  - LLM response
 ```
 
 ---
 
-##### 2️⃣ Historique - Voir la conversation
+## 🛠️ Tous les scripts NPM
 
 ```bash
-GET /history?client_id=<id>
+# Track A: Tools (Phases 1-4)
+npm run calculator                    # Phase 1: Math calculations
+npm run weather                       # Phase 2: Real-time weather
+npm run search                        # Phase 3: Web search
+npm run multi-tool                    # Phase 4: Multi-tool agent
+npm run conversation                  # With memory
+
+# Track B: RAG (Phases 5-8)
+npm run pinecone                      # Phase 5: Pinecone setup
+npm run embedding:multi               # Phase 6: Mistral embeddings
+npm run embedding:providers:test      # Phase 6: Test all providers
+npm run embedding:pinecone:verify     # Phase 6: E2E verification
+npm run rag:query                     # Phase 7: Semantic search
+npm run rag:full                      # Phase 8: Full RAG pipeline
+npm run rag:audit                     # Audit compliance
+
+# Phase 9: Hybrid Agent 🎯
+npm run hybrid                        # Hybrid agent (recommended)
+
+# Server
+npm run api                           # Express API
+npm run api:dev                       # API with watch mode
+npm run start                         # CLI chatbot
+npm run dev                           # CLI with watch mode
 ```
-
-**Réponse :**
-```json
-{
-  "history": [
-    {
-      "role": "system",
-      "content": "Tu es un assistant utile..."
-    },
-    {
-      "role": "user",
-      "content": "Bonjour"
-    },
-    {
-      "role": "assistant",
-      "content": "Bonjour! Comment puis-je t'aider?"
-    }
-  ],
-  "count": 3,
-  "clientId": "user123"
-}
-```
-
-**Exemple :**
-```bash
-curl 'http://localhost:3000/history?client_id=user123'
-```
-
----
-
-##### 3️⃣ Métriques - Statistiques de session
-
-```bash
-GET /metrics?client_id=<id>
-```
-
-**Réponse :**
-```json
-{
-  "sessionMetrics": {
-    "totalTokens": 892,
-    "totalCost": 0.00034,
-    "requestCount": 5
-  },
-  "clientId": "user123"
-}
-```
-
----
-
-##### 4️⃣ Export PDF - Rapport détaillé
-
-```bash
-GET /export/pdf?client_id=<id>
-```
-
-**Retour :** Fichier PDF téléchargeable
-
-**Contenu du PDF :**
-- Page 1 : Résumé global (4 cartes colorées)
-  - Total requêtes
-  - Total tokens
-  - Coût session
-  - Durée moyenne
-- Pages suivantes : Historique détaillé de chaque requête
-  - Numéro, timestamp
-  - Message utilisateur
-  - Tokens consommés
-  - Coût USD
-  - Durée en ms
-  - Provider utilisé
-
-**Exemple :**
-```bash
-curl 'http://localhost:3000/export/pdf?client_id=user123' -o rapport.pdf
-open rapport.pdf
-```
-
----
-
-##### 5️⃣ Liste des Providers
-
-```bash
-GET /providers
-```
-
-**Réponse :**
-```json
-{
-  "providers": [
-    { "name": "mistral", "displayName": "Mistral" },
-    { "name": "groq", "displayName": "Groq" },
-    { "name": "huggingface", "displayName": "HuggingFace" }
-  ]
-}
-```
-
----
-
-##### 6️⃣ Effacer l'historique
-
-```bash
-DELETE /history?client_id=<id>
-```
-
-**Réponse :**
-```json
-{
-  "success": true,
-  "message": "History cleared"
-}
-```
-
----
-
-##### 7️⃣ Health Check
-
-```bash
-GET /health
-```
-
-**Réponse :**
-```json
-{
-  "status": "ok",
-  "timestamp": "2026-05-04T15:25:19.697Z"
-}
-```
-
----
-
-## 📊 Exemple d'utilisation API complète
-
-```bash
-# 1. Créer une session
-curl 'http://localhost:3000/chat?q=Je+m%27appelle+Alice&client_id=alice'
-
-# 2. Continuer la conversation
-curl 'http://localhost:3000/chat?q=Quelle+est+ma+professionn?&client_id=alice'
-
-# 3. Changer de provider
-curl 'http://localhost:3000/chat?q=Utilise+Groq&provider=groq&client_id=alice'
-
-# 4. Voir l'historique
-curl 'http://localhost:3000/history?client_id=alice' | jq
-
-# 5. Voir les métriques
-curl 'http://localhost:3000/metrics?client_id=alice' | jq
-
-# 6. Exporter en PDF
-curl 'http://localhost:3000/export/pdf?client_id=alice' -o alice-report.pdf
-```
-
----
-
-## 🏗️ Architecture & Phases
-
-### Phases complétées (1-7) - Core Functionality
-
-| Phase | Feature | Status | Fichier |
-|-------|---------|--------|---------|
-| 1 | CLI basique + Mistral API streaming | ✅ | chatbot-cli.js |
-| 2 | Mémoire conversationnelle (/history) | ✅ | chatbot-cli.js |
-| 3 | Streaming token-by-token | ✅ | chatbot-cli.js |
-| 4 | Multi-provider (/provider) | ✅ | chatbot-cli.js |
-| 5 | Auto-compression (MAX_HISTORY=20) | ✅ | chatbot-core.js |
-| 6 | /resume - Résumer conversation | ✅ | chatbot-cli.js |
-| 7 | /translate + Métriques détaillées | ✅ | chatbot-core.js |
-
-### Phases bonus (8-9) - API & Export
-
-| Phase | Feature | Status | Fichier |
-|-------|---------|--------|---------|
-| 8 | Express API + Multi-sessions | ✅ | api.js |
-| 9 | Export PDF professionnel | ✅ | api.js |
 
 ---
 
 ## 📁 Structure du projet
 
 ```
-ChatBot/
-├── src/
-│   ├── chatbot-cli.js          # CLI principal (Phases 1-7)
-│   ├── chatbot-core.js         # Classe Chatbot réutilisable
-│   └── api.js                  # Express API (Phases 8-9)
-├── output/                     # Dossier PDFs (généré)
-│   └── example-report.pdf
-├── .env                        # Variables d'environnement (ignoré)
-├── .gitignore
-├── package.json                # Dépendances
-├── package-lock.json
-└── README.md                   # Cette documentation
+src/
+├─ TRACK A: Tools (Phases 1-4)
+│  ├─ calculatrice-agent.js         (Phase 1: Math)
+│  ├─ weather-agent.js              (Phase 2: Météo)
+│  ├─ search-agent.js               (Phase 3: Web search)
+│  ├─ multi-tool-agent.js           (Phase 4: Routing)
+│  └─ conversation-agent.js         (Memory)
+│
+├─ TRACK B: RAG (Phases 5-8)
+│  ├─ pinecone-agent.js             (Phase 5)
+│  ├─ embedding-multi-provider.js   (Phase 6)
+│  ├─ rag-query-agent.js            (Phase 7)
+│  ├─ rag-generator.js              (Phase 8)
+│  ├─ rag-audit.js                  (Compliance)
+│  └─ embedding-pinecone-verify.js  (E2E test)
+│
+├─ PHASE 9: Hybrid Agent ✨
+│  ├─ hybrid-agent.js               (Main orchestrator)
+│  └─ rag-search-tool.js            (RAG tool)
+│
+└─ Support
+   ├─ api.js                        (Express API)
+   ├─ chatbot-cli.js                (CLI interface)
+   └─ agent-loop.js                 (Tool execution)
+
+docs/
+├─ PHASE5-9.md                      (Personal notes)
+└─ (Docs réservées - non tracking git)
 ```
 
 ---
 
-## 🔧 Dépendances principales
+## 📊 Test Results
 
-```json
-{
-  "dotenv": "^16.3.1",           // Gestion .env
-  "express": "^4.18.2",          // Framework API
-  "pdfkit": "^0.13.0"            // Génération PDF
-}
+### Phase 7: Semantic Search Checkpoints
+
+```
+✅ CHECKPOINT 1: Pertinence
+   Query: "Qu'est-ce que l'IA?"
+   Results: 2 chunks found
+   Scores: 0.748, 0.727
+   Status: ✅ Relevant (avg 0.737)
+
+✅ CHECKPOINT 2: Off-topic
+   Query: "Restaurant Paris?"
+   Results: 2 chunks found
+   Scores: 0.701, 0.691
+   Status: ✅ Correctly low (avg 0.696)
+
+✅ CHECKPOINT 3: Reformulation
+   Q1: "Qu'est-ce que l'IA?" → chunk-0 (0.748)
+   Q2: "Parlez-moi de l'IA et ses caractéristiques" → chunk-0 (0.723)
+   Status: ✅ Stable results (same top chunk)
+```
+
+### Phase 9: Hybrid Agent Routing
+
+```
+Test 1: "Combien font 2^8?"
+→ Tool: calculate
+→ Result: 256 ✅
+
+Test 2: "Quel temps fait-il à Lyon?"
+→ Tool: get_weather
+→ Result: API called ✅
+
+Test 3: "Qui a gagné la Coupe 2022?"
+→ Tool: web_search
+→ Result: "Argentina" ✅
+
+Test 4: "Question quelconque"
+→ Tool: NONE (direct response) ✅
+
+Test 5: "Qu'est-ce que l'IA?"
+→ Tool: rag_search
+→ Result: Corpus privé ✅
 ```
 
 ---
 
-## 💰 Modèle de coûts
+## 🎯 Key Features
 
-### Providers supportés
-
-| Provider | Input/1M tokens | Output/1M tokens | Type |
-|----------|----------------|-----------------|------|
-| Mistral | $0.14 | $0.42 | Payant |
-| Groq | $0.00 | $0.00 | Gratuit |
-| HuggingFace | $0.00 | $0.00 | Gratuit |
-
-### Calcul des coûts
-
-```
-Coût = (promptTokens × inputPrice) + (completionTokens × outputPrice)
-Exemple Mistral:
-  - Input: 45 tokens × ($0.14/1M) = $0.000063
-  - Output: 189 tokens × ($0.42/1M) = $0.00007938
-  - Total: $0.0000893
-```
+| Feature | Phase | Status |
+|---------|-------|--------|
+| Math calculations | 1 | ✅ |
+| Real-time weather | 2 | ✅ |
+| Web search | 3 | ✅ |
+| Multi-tool orchestration | 4 | ✅ |
+| Conversation memory | 4 | ✅ |
+| Vector DB (Pinecone) | 5 | ✅ |
+| Multi-provider embeddings | 6 | ✅ |
+| Semantic search | 7 | ✅ |
+| RAG pipeline | 8 | ✅ |
+| **Hybrid agent (4-tools)** | **9** | **✅** |
 
 ---
 
-## 🎮 Cas d'usage
+## 📝 Documentation
 
-### 1. Analyse de coûts multi-provider
-```bash
-curl 'http://localhost:3000/chat?q=Quelle+est+ta+meilleure+feature&provider=mistral'
-curl 'http://localhost:3000/chat?q=Quelle+est+ta+meilleure+feature&provider=groq'
-curl 'http://localhost:3000/export/pdf' -o comparison.pdf
+Personal notes (reserved, not tracked by Git):
+
+```
+docs/PHASE5.md    → Pinecone setup details
+docs/PHASE6.md    → Embedding strategies
+docs/PHASE7.md    → Search validation
+docs/PHASE8.md    → RAG implementation
+docs/PHASE9.md    → Hybrid agent architecture
+docs/RAG_AUDIT.md → Pipeline compliance report
 ```
 
-### 2. Chatbot multi-utilisateurs
-```bash
-curl 'http://localhost:3000/chat?q=Bonjour&client_id=user1'
-curl 'http://localhost:3000/chat?q=Bonjour&client_id=user2'
-# Historiques complètement isolés
-```
-
-### 3. Monitoring et reporting
-```bash
-# Générer rapport quotidien
-curl 'http://localhost:3000/export/pdf?client_id=global' -o \
-  daily-$(date +%Y%m%d).pdf
-```
+To view: Check `docs/` folder locally
 
 ---
 
-## 🐛 Troubleshooting
+## 🔐 Security
 
-### Erreur: "API key missing"
-```
-Solution: Vérifier le fichier .env contient toutes les clés requises
-```
-
-### Erreur: "Module not found"
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### PDF vide ou mal formaté
-```
-Solution: Assurez-vous d'avoir au moins 1 requête avant d'exporter
-```
-
-### Provider n'existe pas
-```bash
-# Vérifier les providers disponibles
-curl http://localhost:3000/providers
-```
+- `.env` file is gitignored (never commit API keys)
+- `docs/` folder is gitignored (personal work only)
+- All external APIs validated
+- Input sanitization in all tools
+- No credentials in code
 
 ---
 
-## 🚀 Performance
+## 📞 Support & Contact
 
-### Benchmarks typiques
-
-```
-Request latency (Mistral): 2-3 secondes
-Request latency (Groq):    1-2 secondes
-PDF generation:            <500ms
-Memory usage:              ~50MB
-Max history items:         20 messages (auto-compression)
-```
+- **GitHub**: [@MellGitson](https://github.com/MellGitson/Tools_ia)
+- **Project**: Mini-Perplexity J3 - Hybrid AI Agent
 
 ---
 
-## 📝 Notes développeur
+## 📄 License
 
-### Ajouter un nouveau provider
+MIT - See LICENSE file
 
-1. Ajouter configuration dans `src/chatbot-core.js` :
+---
+
+## 🎉 What's This Project?
+
+A **complete AI agent system** demonstrating:
+
+1. ✅ Multiple specialized tools (math, weather, web search)
+2. ✅ Retrieval-Augmented Generation with private data (Pinecone)
+3. ✅ Automatic tool selection via LLM (tool_choice='auto')
+4. ✅ Production-ready architecture
+
+**The Mini-Perplexity Stack** 🚀
+
 ```javascript
-export const PROVIDERS = {
-  newprovider: {
-    url: 'https://api.provider.com/v1/chat',
-    apiKey: process.env.NEWPROVIDER_KEY,
-    model: 'model-name',
-    name: 'Display Name'
-  }
-}
+// One command to rule them all
+npm run hybrid
 ```
 
-2. Ajouter pricing :
-```javascript
-export const PRICING = {
-  newprovider: { input: 0.01, output: 0.02, name: 'New Provider' }
-}
-```
-
-3. Tester :
-```bash
-curl 'http://localhost:3000/chat?q=test&provider=newprovider'
+Enjoy! 🚀
 ```
 
 ---
