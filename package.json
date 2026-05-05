@@ -22,7 +22,9 @@
     "multi-tool": "node src/multi-tool-agent.js",
     "multi-tool:dev": "node --watch src/multi-tool-agent.js",
     "conversation": "node src/conversation-agent.js",
-    "conversation:dev": "node --watch src/conversation-agent.js"
+    "conversation:dev": "node --watch src/conversation-agent.js",
+    "pinecone": "node src/pinecone-agent.js",
+    "pinecone:dev": "node --watch src/pinecone-agent.js"
   },
   "keywords": [
     "chatbot",
