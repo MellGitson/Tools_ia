@@ -7,35 +7,45 @@
 
 ---
 
-## � Architecture: 9 Phases Complétées
+## 📊 Architecture: 9 Phases Complétées
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│         MINI-PERPLEXITY J3 - HYBRID AGENT              │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│  TRACK A: Tools              TRACK B: RAG              │
-│  ├─ Calculatrice         └─ Vector Search (Pinecone)   │
-│  ├─ Météo en temps réel                                │
-│  ├─ Web Search (DuckDuckGo)                           │
-│  └─ Multi-tool routing ←──→ Intelligent Decision ←──┐  │
-│                                                      │  │
-│  ┌──────────────────────────────────────────────────┘  │
-│  ↓                                                      │
-│  [ MISTRAL LLM - tool_choice='auto' ]                 │
-│  ↓                                                      │
-│  ┌──────┬──────────┬──────────┬──────────┬─────────┐  │
-│  ↓      ↓          ↓          ↓          ↓         ↓  │
-│ [calc][weather]  [web]   [rag_search][direct]        │
-│  256   21°C     Argentina  IA Docs     Reply          │
-│  │      │        │         │           │              │
-│  └──────┴────────┴─────────┴───────────┘              │
-│            ↓                                            │
-│       [LLM Final Answer]                              │
-│            ↓                                            │
-│       Unified Response 🎯                             │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
+╔════════════════════════════════════════════════════════════════╗
+║          MINI-PERPLEXITY J3 - HYBRID AGENT                   ║
+╠════════════════════════════════════════════════════════════════╣
+║                                                                ║
+║              ┌─────────────────────────────────┐              ║
+║              │   QUESTION UTILISATEUR           │              ║
+║              └──────────────┬──────────────────┘              ║
+║                             ↓                                  ║
+║        ┌────────────────────────────────────────────┐         ║
+║        │  MISTRAL LLM - tool_choice='auto'         │         ║
+║        │  (Routing automatique)                     │         ║
+║        └──────────┬──────────────────────┬─────────┘         ║
+║                   ↓                      ↓                    ║
+║        ┌──────────────────┐     ┌──────────────────┐          ║
+║        │  TRACK A: TOOLS  │     │   TRACK B: RAG   │          ║
+║        ├──────────────────┤     ├──────────────────┤          ║
+║        │ • calculate      │     │ • rag_search     │          ║
+║        │ • get_weather    │     │ (Pinecone)       │          ║
+║        │ • web_search     │     │                  │          ║
+║        └──────────────────┘     └──────────────────┘          ║
+║                   │                      │                    ║
+║        ┌──────────┴──────────────────────┴───┐               ║
+║        ↓          ↓           ↓           ↓   ↓              ║
+║     [256]   [21°C Lyon]  [Argentina]  [IA Docs]             ║
+║                                                                ║
+║        └──────────┬──────────────────────┬───┘               ║
+║                   ↓                      ↓                    ║
+║        ┌────────────────────────────────────┐                ║
+║        │   LLM Génère Réponse Finale        │                ║
+║        └──────────┬─────────────────────────┘                ║
+║                   ↓                                            ║
+║        ┌────────────────────────────────────┐                ║
+║        │   Réponse Unifiée 🎯               │                ║
+║        └────────────────────────────────────┘                ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
 ```
 
 | Phase | Track | Feature | Status |
@@ -333,10 +343,6 @@ src/
    ├─ api.js                        (Express API)
    ├─ chatbot-cli.js                (CLI interface)
    └─ agent-loop.js                 (Tool execution)
-
-docs/
-├─ PHASE5-9.md                      (Personal notes)
-└─ (Docs réservées - non tracking git)
 ```
 
 ---
@@ -406,24 +412,7 @@ Test 5: "Qu'est-ce que l'IA?"
 
 ---
 
-## 📝 Documentation
-
-Personal notes (reserved, not tracked by Git):
-
-```
-docs/PHASE5.md    → Pinecone setup details
-docs/PHASE6.md    → Embedding strategies
-docs/PHASE7.md    → Search validation
-docs/PHASE8.md    → RAG implementation
-docs/PHASE9.md    → Hybrid agent architecture
-docs/RAG_AUDIT.md → Pipeline compliance report
-```
-
-To view: Check `docs/` folder locally
-
----
-
-## 🔐 Security
+## 🔒 Security
 
 - `.env` file is gitignored (never commit API keys)
 - `docs/` folder is gitignored (personal work only)
