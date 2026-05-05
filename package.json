@@ -15,6 +15,8 @@
     "weather:dev": "node --watch src/weather-agent.js",
     "weather:pdf": "node src/weather-pdf-agent.js",
     "weather:pdf:dev": "node --watch src/weather-pdf-agent.js",
+    "weather:display": "node src/weather-display-agent.js",
+    "weather:display:dev": "node --watch src/weather-display-agent.js",
     "search": "node src/search-agent.js",
     "search:dev": "node --watch src/search-agent.js",
     "multi-tool": "node src/multi-tool-agent.js",
