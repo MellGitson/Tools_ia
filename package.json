@@ -24,7 +24,15 @@
     "conversation": "node src/conversation-agent.js",
     "conversation:dev": "node --watch src/conversation-agent.js",
     "pinecone": "node src/pinecone-agent.js",
-    "pinecone:dev": "node --watch src/pinecone-agent.js"
+    "pinecone:dev": "node --watch src/pinecone-agent.js",
+    "embedding": "node src/embedding-agent.js",
+    "embedding:dev": "node --watch src/embedding-agent.js",
+    "embedding:test": "node src/embedding-test.js",
+    "embedding:test:dev": "node --watch src/embedding-test.js",
+    "embedding:multi": "node src/embedding-multi-provider.js",
+    "embedding:multi:dev": "node --watch src/embedding-multi-provider.js",
+    "embedding:providers:test": "node src/embedding-providers-test.js",
+    "embedding:pinecone:verify": "node src/embedding-pinecone-verify.js"
   },
   "keywords": [
     "chatbot",
