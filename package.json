@@ -14,7 +14,9 @@
     "weather": "node src/weather-agent.js",
     "weather:dev": "node --watch src/weather-agent.js",
     "weather:pdf": "node src/weather-pdf-agent.js",
-    "weather:pdf:dev": "node --watch src/weather-pdf-agent.js"
+    "weather:pdf:dev": "node --watch src/weather-pdf-agent.js",
+    "search": "node src/search-agent.js",
+    "search:dev": "node --watch src/search-agent.js"
   },
   "keywords": [
     "chatbot",
