@@ -6,12 +6,19 @@ import 'dotenv/config';
  * @param {Object} toolFunctions - Map { nom_outil: fonction }
  * @param {string} userMessage - Le message de l'utilisateur
  * @param {number} maxIterations - Nombre maximum de tours (par défaut 10)
+ * @param {Array} conversationHistory - Historique optionnel pour conversation multi-tour (modifié en place)
  * @returns {Promise<string>} La réponse finale du modèle
  */
-export async function runAgent(tools, toolFunctions, userMessage, maxIterations = 10) {
-  const messages = [
+export async function runAgent(tools, toolFunctions, userMessage, maxIterations = 10, conversationHistory = null) {
+  // Si historique fourni, l'utiliser ; sinon en créer un nouveau
+  const messages = conversationHistory || [
     { role: 'user', content: userMessage }
   ];
+
+  // Si historique fourni, ajouter le nouveau message utilisateur
+  if (conversationHistory) {
+    messages.push({ role: 'user', content: userMessage });
+  }
 
   let iterations = 0;
 
@@ -63,6 +70,15 @@ export async function runAgent(tools, toolFunctions, userMessage, maxIterations 
       // Le modèle a fini, on retourne la réponse textuelle
       console.log('✅ Réponse finale:');
       console.log(choice.message.content);
+      
+      // Ajouter la réponse finale à l'historique (si c'est un historique fourni)
+      if (conversationHistory) {
+        messages.push({
+          role: 'assistant',
+          content: choice.message.content
+        });
+      }
+      
       return choice.message.content;
     }
 
