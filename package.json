@@ -32,7 +32,9 @@
     "embedding:multi": "node src/embedding-multi-provider.js",
     "embedding:multi:dev": "node --watch src/embedding-multi-provider.js",
     "embedding:providers:test": "node src/embedding-providers-test.js",
-    "embedding:pinecone:verify": "node src/embedding-pinecone-verify.js"
+    "embedding:pinecone:verify": "node src/embedding-pinecone-verify.js",
+    "rag:audit": "node src/rag-audit.js",
+    "rag:query": "node src/rag-query-agent.js"
   },
   "keywords": [
     "chatbot",
