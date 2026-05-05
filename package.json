@@ -35,7 +35,8 @@
     "embedding:pinecone:verify": "node src/embedding-pinecone-verify.js",
     "rag:audit": "node src/rag-audit.js",
     "rag:query": "node src/rag-query-agent.js",
-    "rag:full": "node src/rag-generator.js"
+    "rag:full": "node src/rag-generator.js",
+    "hybrid": "node src/hybrid-agent.js"
   },
   "keywords": [
     "chatbot",
