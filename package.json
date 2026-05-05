@@ -12,7 +12,9 @@
     "calculator": "node src/calculatrice-agent.js",
     "calculator:dev": "node --watch src/calculatrice-agent.js",
     "weather": "node src/weather-agent.js",
-    "weather:dev": "node --watch src/weather-agent.js"
+    "weather:dev": "node --watch src/weather-agent.js",
+    "weather:pdf": "node src/weather-pdf-agent.js",
+    "weather:pdf:dev": "node --watch src/weather-pdf-agent.js"
   },
   "keywords": [
     "chatbot",
